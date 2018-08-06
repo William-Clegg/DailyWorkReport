@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".FormDetailActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/form_detail_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:context=".FormDetailActivity"
+        tools:ignore="MergeRootFrame"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <!--<TextView
+            android:id="@+id/form_detail"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="384dp"
+            android:layout_height="700dp"
+            android:padding="16dp"
+            android:textIsSelectable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".FormDetailFragment" />-->
+
+        <TextView
+            android:id="@+id/fName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="14dp"
+            android:text="@string/foreman_name"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/job_spinner"
+            android:layout_width="320dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fName" />
+
+        <include
+            layout="@layout/spinner_not_selected"
+            android:layout_width="230dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="@+id/job_spinner"
+            app:layout_constraintTop_toTopOf="@+id/job_spinner" />
+
+
+        <Button
+            android:id="@+id/myDatePickerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/dateLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/job_spinner" />
+
+        <TextView
+            android:id="@+id/showMyDate"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/myDatePickerButton"
+            app:layout_constraintTop_toTopOf="@+id/myDatePickerButton" />
+
+        <TextView
+            android:id="@+id/MenOnSite"
+            android:layout_width="190dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/MenOnSiteString"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/myDatePickerButton" />
+
+        <TextView
+            android:id="@+id/numPlumbers"
+            android:layout_width="139dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:text="@string/plumbersLabel"
+            android:textColor="#000000"
+            android:textStyle=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MenOnSite" />
+
+        <EditText
+            android:id="@+id/numPlumbersField"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="7dp"
+            android:hint="@string/plumbersHint"
+            android:inputType="phone"
+            app:layout_constraintStart_toEndOf="@+id/numPlumbers"
+            app:layout_constraintTop_toBottomOf="@+id/MenOnSite" />
+
+        <TextView
+            android:id="@+id/numApprentices"
+            android:layout_width="156dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:text="@string/apprenticesLabel"
+            android:textColor="#000000"
+            android:textStyle=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numPlumbers" />
+
+        <EditText
+            android:id="@+id/numApprenticesField"
+            android:layout_width="150dp"
+            android:layout_height="41dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:hint="@string/apprenticesHint"
+            android:inputType="phone"
+            app:layout_constraintStart_toEndOf="@+id/numApprentices"
+            app:layout_constraintTop_toBottomOf="@+id/numPlumbersField" />
+
+        <TextView
+            android:id="@+id/numLaborers"
+            android:layout_width="156dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:text="@string/laborersLabel"
+            android:textColor="#000000"
+            android:textStyle=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numApprentices" />
+
+        <EditText
+            android:id="@+id/numLaborersField"
+            android:layout_width="150dp"
+            android:layout_height="41dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:hint="@string/laborersHint"
+            android:inputType="phone"
+            app:layout_constraintStart_toEndOf="@+id/numLaborers"
+            app:layout_constraintTop_toBottomOf="@+id/numApprenticesField" />
+
+        <TextView
+            android:id="@+id/subsPrompt"
+            android:layout_width="204dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/subsPromptLabel"
+            android:textColor="#000000"
+            android:textStyle=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numLaborers" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/subsPrompt"
+            app:layout_constraintTop_toBottomOf="@+id/numLaborersField">
+
+            <RadioButton
+                android:id="@+id/subsYesRadio"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/subsYes" />
+
+            <RadioButton
+                android:id="@+id/subsNoRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/subsNo" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/subName"
+            android:layout_width="124dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/subNameLabel"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subsPrompt" />
+
+        <Spinner
+            android:id="@+id/sub_spinner"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toEndOf="@+id/subName"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <include
+            layout="@layout/sub_spinner_not_selected"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@+id/sub_spinner"
+            app:layout_constraintTop_toTopOf="@+id/sub_spinner" />
+
+        <EditText
+            android:id="@+id/subNameField"
+            android:layout_width="150dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="0dp"
+            android:hint="@string/subNameHint"
+            android:inputType="textCapWords"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/subName"
+            app:layout_constraintTop_toBottomOf="@+id/sub_spinner" />
+
+        <TextView
+            android:id="@+id/Weather"
+            android:layout_width="130dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/weatherLabel"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subNameField" />
+
+        <TextView
+            android:id="@+id/weatherTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/weatherTempLabel"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Weather" />
+
+        <TextView
+            android:id="@+id/selectedTempLabel"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/weatherTemp"
+            app:layout_constraintTop_toBottomOf="@+id/Weather" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="330dp"
+            android:layout_height="31dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:maxHeight="21dp"
+            android:minHeight="21dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weatherTemp"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <TextView
+            android:id="@+id/weatherRain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/weatherRainLabel"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rainRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weatherRain">
+
+            <RadioButton
+                android:id="@+id/heavyRainRadio"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/rainHeavy" />
+
+            <RadioButton
+                android:id="@+id/lightRainRadio"
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/rainLight" />
+
+            <RadioButton
+                android:id="@+id/noRainRadio"
+                android:layout_width="79dp"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/rainNo" />
+
+        </RadioGroup>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

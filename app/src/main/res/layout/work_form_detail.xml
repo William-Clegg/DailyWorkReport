@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/work_form_detail_scroll_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".FormDetailActivity">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/work_form_detail_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/work_form_detail_header"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:id="@+id/addAreaLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/newAreaPrompt"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/newAreaButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="13dp"
+                android:background="@color/colorWhite"
+                android:contentDescription="@string/newAreaButtonString"
+                android:src="@drawable/ic_add_black_24dp"
+                android:tint="@color/colorGray"
+                app:layout_constraintStart_toEndOf="@+id/addAreaLabel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/deleteEntries"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorWhite"
+                android:text="@string/deleteText"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/addAreaLabel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/cancelSelection"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorWhite"
+                android:text="@string/cancelText"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/deleteEntries"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/removeAreaButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="144dp"
+                android:layout_marginStart="144dp"
+                android:layout_marginTop="14dp"
+                android:background="@color/colorWhite"
+                android:contentDescription="@string/newAreaButtonString"
+                android:src="@drawable/ic_remove_black_24dp"
+                android:tint="@color/colorGray"
+                app:layout_constraintStart_toEndOf="@+id/newAreaButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--<ListView
+                android:id="@+id/areaList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newAreaButton" />
+
+            <EditText
+                android:id="@+id/areaNameInitial"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:hint="@string/areaHint"
+                android:inputType="textCapWords"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addAreaLabel" />
+
+            <EditText
+                android:id="@+id/costInitial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="62dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:hint="@string/costHint"
+                android:inputType="number"
+                app:layout_constraintStart_toEndOf="@+id/areaNameInitial"
+                app:layout_constraintTop_toBottomOf="@+id/addAreaLabel" />
+
+            <ImageButton
+                android:id="@+id/newCostButtonInitial"
+                android:layout_width="34dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite"
+                android:contentDescription="@string/newAreaButtonString"
+                android:src="@drawable/ic_add_black_24dp"
+                android:tint="@color/colorGray"
+                app:layout_constraintStart_toEndOf="@+id/costInitial"
+                app:layout_constraintTop_toTopOf="@+id/costInitial" />-->
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

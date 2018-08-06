@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/areaGroupLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/areaNameInitial"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:hint="@string/areaHint"
+        android:inputType="textCapWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/costInitial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:hint="@string/costHint"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/areaNameInitial"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/newCostButton"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:contentDescription="@string/newAreaButtonString"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/colorGray"
+        app:layout_constraintStart_toEndOf="@+id/costInitial"
+        app:layout_constraintTop_toTopOf="@+id/costInitial" />
+
+    <CheckBox
+        android:id="@+id/mainCheckBox"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:contentDescription="@string/newAreaButtonString"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/colorGray"
+        app:layout_constraintStart_toEndOf="@+id/costInitial"
+        app:layout_constraintTop_toTopOf="@+id/costInitial" />
+
+</android.support.constraint.ConstraintLayout>

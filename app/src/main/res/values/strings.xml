@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Stasco</string>
+    <string name="title_form_detail">Form Detail</string>
+    <string name="foreman_name">Foreman\'s Name</string>
+    <string name="job_prompt">Choose your project site</string>
+    <string name="jobSpinnerLabel">[Select your project site&#8230;]</string>
+    <string name="subSpinnerLabel">[Select sub&#8230;]</string>
+    <string name="dateLabel">Choose Date</string>
+    <string name="plumbersLabel">Number of Plumbers:</string>
+    <string name="apprenticesLabel">Number of Apprentices:</string>
+    <string name="laborersLabel">Number of Laborers:</string>
+    <string name="plumbersHint"># of Plumbers</string>
+    <string name="apprenticesHint"># of Apprentices</string>
+    <string name="laborersHint"># of Laborers</string>
+    <string name="MenOnSiteString">Men on Site</string>
+    <string name="subsYes">Yes</string>
+    <string name="subsNo">No</string>
+    <string name="subsPromptLabel">Were there subs on site today?</string>
+    <string name="subNameLabel">If yes, select Sub:</string>
+    <string name="subNameHint">Not Listed</string>
+    <string name="weatherLabel">Weather</string>
+    <string name="weatherTempLabel">Average Temperature</string>
+    <string name="weatherRainLabel">Precipitation</string>
+    <string name="rainNo">Clear</string>
+    <string name="rainLight">Light Rain</string>
+    <string name="rainHeavy">Heavy Rain</string>
+    <string name="newAreaPrompt">Add an Area</string>
+    <string name="removeAreaPrompt">Remove Entries</string>
+    <string name="newAreaButtonString">Adds a work area</string>
+    <string name="removeButtonString">Select entries to remove</string>
+    <string name="areaHint">Work Area</string>
+    <string name="costHint">Cost Item</string>
+    <string name="deleteText">Delete</string>
+    <string name="cancelText">Cancel</string>
+
+    <string-array name="job_array">
+        <item>3191 - Trackside</item>
+        <item>3193 - Punch Bowl</item>
+        <item>3194 - The Sutton</item>
+        <item>3198 - Chastain Park Amphitheater</item>
+        <item>3199 - Jim R. Miller Park</item>
+        <item>3200 - 12 Stone Church</item>
+        <item>3201 - 4th Floor at Trackside</item>
+        <item>3202 - St. Clare of Assisi</item>
+        <item>3203 - Golder &amp; Associates at Trackside</item>
+        <item>3204 - Coyote Alpharetta</item>
+        <item>3205 - Acworth Community Center</item>
+        <item>3206 - Anna Shaw Children's Institute</item>
+        <item>3207 - Add at Yoo on the Park</item>
+        <item>3208 - Hampton Inn</item>
+        <item>3209 - Woodward Transportation</item>
+        <item>3210 - Plaza Midtown</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="sub_array">
+        <item>Oscar</item>
+        <item>Barr Mechanical</item>
+        <item>CCH services</item>
+        <item>Other</item>
+    </string-array>
+</resources>
