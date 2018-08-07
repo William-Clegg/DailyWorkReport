@@ -119,6 +119,7 @@ public class WorkFormDetailFragment extends Fragment {
 
         }
 
+        /*
         if(stopped) {
             for(int i = 0; i < 5; i++) {
 
@@ -143,7 +144,7 @@ public class WorkFormDetailFragment extends Fragment {
                     }
                 }
             }
-        }
+        }*/
         return rootView;
     }
 
@@ -214,7 +215,7 @@ public class WorkFormDetailFragment extends Fragment {
         areaCount++;
         areaId++;
     }
-
+/*
     @Override
     public void onStop() {
 
@@ -239,6 +240,6 @@ public class WorkFormDetailFragment extends Fragment {
             }
         }
         super.onStop();
-    }
+    }*/
 }
 

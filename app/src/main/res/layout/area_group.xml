@@ -60,4 +60,120 @@
         app:layout_constraintStart_toEndOf="@+id/costInitial"
         app:layout_constraintTop_toTopOf="@+id/costInitial" />
 
+    <EditText
+        android:id="@+id/firstCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:hint="@string/costHint"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/areaNameInitial"
+        app:layout_constraintTop_toBottomOf="@id/costInitial" />
+
+    <CheckBox
+        android:id="@+id/firstBox"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:background="@color/colorWhite"
+        android:contentDescription="@string/newAreaButtonString"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/colorGray"
+        app:layout_constraintStart_toEndOf="@+id/costInitial"
+        app:layout_constraintTop_toTopOf="@+id/firstCost" />
+
+    <EditText
+        android:id="@+id/secondCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:hint="@string/costHint"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/areaNameInitial"
+        app:layout_constraintTop_toBottomOf="@id/firstCost" />
+
+    <CheckBox
+        android:id="@+id/secondBox"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:background="@color/colorWhite"
+        android:contentDescription="@string/newAreaButtonString"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/colorGray"
+        app:layout_constraintStart_toEndOf="@+id/costInitial"
+        app:layout_constraintTop_toTopOf="@+id/secondCost" />
+
+    <EditText
+        android:id="@+id/thirdCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:hint="@string/costHint"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/areaNameInitial"
+        app:layout_constraintTop_toBottomOf="@id/secondCost" />
+
+    <CheckBox
+        android:id="@+id/thirdBox"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:background="@color/colorWhite"
+        android:contentDescription="@string/newAreaButtonString"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/colorGray"
+        app:layout_constraintStart_toEndOf="@+id/costInitial"
+        app:layout_constraintTop_toTopOf="@+id/thirdCost" />
+
+    <EditText
+        android:id="@+id/fourthCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="62dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:hint="@string/costHint"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/areaNameInitial"
+        app:layout_constraintTop_toBottomOf="@id/thirdCost" />
+
+    <CheckBox
+        android:id="@+id/fourthBox"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:background="@color/colorWhite"
+        android:contentDescription="@string/newAreaButtonString"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/colorGray"
+        app:layout_constraintStart_toEndOf="@+id/costInitial"
+        app:layout_constraintTop_toTopOf="@+id/fourthCost" />
+
 </android.support.constraint.ConstraintLayout>

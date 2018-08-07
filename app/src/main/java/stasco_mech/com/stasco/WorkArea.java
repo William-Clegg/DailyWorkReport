@@ -25,7 +25,7 @@ public class WorkArea extends ConstraintLayout {
 
     public int previousCostId = 1;
     ConstraintLayout areaLayout;
-    int[] viewIds = new int[7];
+    boolean[] viewIds = new boolean[4];
     public int costCount = 0;
     final ConstraintSet areaSet = new ConstraintSet();
     ConstraintLayout newAreaLayout;
@@ -68,9 +68,6 @@ public class WorkArea extends ConstraintLayout {
         final ImageButton addCost = newAreaGroup.findViewById(R.id.newCostButton);
         final CheckBox mainCheck = newAreaGroup.findViewById(R.id.mainCheckBox);
         mainCheck.setVisibility(View.GONE);
-        viewIds[0] = newAreaGroup.findViewById(R.id.areaNameInitial).getId();
-        viewIds[1] = newAreaGroup.findViewById(R.id.costInitial).getId();
-        viewIds[2] = addCost.getId();
         newAreaLayout = newAreaGroup.findViewById(R.id.areaGroupLayout);
         newAreaLayout.setId(WorkFormDetailFragment.areaId);
 
@@ -88,86 +85,55 @@ public class WorkArea extends ConstraintLayout {
         addCost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(costCount < 4) {
-
                     addNewCost();
                 }
             }
         });
-
         areaLayout.addView(newAreaLayout, areaLayoutParams);
-
-        System.out.println(newAreaGroup.getId());
-
-        System.out.println(previousAreaId);
     }
 
     public void addNewCost() {
 
-        EditText newCostNum = new EditText(getContext());
-        newCostNum.setInputType(InputType.TYPE_CLASS_NUMBER);
-        newCostNum.setHint(R.string.costHint);
-        newCostNum.setGravity(Gravity.CENTER);
-
-        CheckBox newCheckBox = new CheckBox(getContext());
-
-        int costID = -1;
-        int checkId = -1;
-
-        for(int i = 3; i < 7; i++) {
-            if(viewIds[i] == 0) {
-
-                System.out.println(i);
-                costID = i;
-                checkId = i + 100;
-                viewIds[i] = costID;
-                i = 7;
-            }
+        EditText newCostNum;
+        if(!viewIds[0]) {
+            newCostNum = newAreaGroup.findViewById(R.id.firstCost);
+            newCostNum.setVisibility(View.VISIBLE);
+            viewIds[0] = true;
+        } else if(!viewIds[1]) {
+            newCostNum = newAreaGroup.findViewById(R.id.secondCost);
+            newCostNum.setVisibility(View.VISIBLE);
+            viewIds[1] = true;
+        } else if(!viewIds[2]) {
+            newCostNum = newAreaGroup.findViewById(R.id.thirdCost);
+            newCostNum.setVisibility(View.VISIBLE);
+            viewIds[2] = true;
+        } else if(!viewIds[3]) {
+            newCostNum = newAreaGroup.findViewById(R.id.fourthCost);
+            newCostNum.setVisibility(View.VISIBLE);
+            viewIds[3] = true;
         }
-
-        int topId;
-        newCheckBox.setId(checkId);
-        newCostNum.setId(costID);
-        if(costCount == 0) {
-            topId = R.id.costInitial;
-        } else {
-            topId = previousCostId;
-        }
-
-        newAreaLayout.addView(newCostNum);
-        newAreaLayout.addView(newCheckBox);
-        newCheckBox.setVisibility(View.GONE);
-        areaSet.clone(newAreaLayout);
-        areaSet.connect(costID, ConstraintSet.TOP, topId, ConstraintSet.BOTTOM, 0);
-        areaSet.connect(costID, ConstraintSet.LEFT, R.id.costInitial, ConstraintSet.LEFT, 0);
-        areaSet.connect(checkId, ConstraintSet.START, costID, ConstraintSet.END, 75);
-        areaSet.connect(checkId, ConstraintSet.TOP, costID, ConstraintSet.TOP, 35);
-        areaSet.applyTo(newAreaLayout);
-
-        for(int j = 3; j < 7; j++) {
-            if(viewIds[j] != 0) {
-                EditText fillFields = newAreaGroup.findViewById(j);
-                if (fillFields != null) {
-                    fillFields.setText(j + "");
-                }
-            }
-        }
-
-        previousCostId = costID;
         costCount++;
     }
 
+
     public void editWorkEntries(int first) {
 
-        newAreaGroup.findViewById(viewIds[2]).setVisibility(View.GONE);
+        newAreaGroup.findViewById(R.id.newCostButton).setVisibility(View.GONE);
 
-        for (int i = 3; i < 7; i++) {
-
-            if (viewIds[i] != 0) {
-                CheckBox select = newAreaGroup.findViewById(i+100);
-                select.setVisibility(View.VISIBLE);
-            }
+        CheckBox checkBox;
+        if(viewIds[0]) {
+            checkBox = newAreaGroup.findViewById(R.id.firstBox);
+            checkBox.setVisibility(View.VISIBLE);
+        } if(viewIds[1]) {
+            checkBox = newAreaGroup.findViewById(R.id.secondBox);
+            checkBox.setVisibility(View.VISIBLE);
+        } if(viewIds[2]) {
+            checkBox = newAreaGroup.findViewById(R.id.thirdBox);
+            checkBox.setVisibility(View.VISIBLE);
+        } if(viewIds[3]) {
+            checkBox = newAreaGroup.findViewById(R.id.fourthBox);
+            checkBox.setVisibility(View.VISIBLE);
         }
 
         final CheckBox select = newAreaGroup.findViewById(R.id.mainCheckBox);
@@ -181,28 +147,40 @@ public class WorkArea extends ConstraintLayout {
             public void onClick(View v) {
 
                 if (select.isChecked()) {
-                    System.out.println("HELLO");
+
                     select.setChecked(true);
-
-                    for (int i = 3; i < 7; i++) {
-
-                        if(viewIds[i] != 0) {
-
-                            CheckBox subBox = newAreaGroup.findViewById(viewIds[i]+100);
-                            subBox.setChecked(true);
-                        }
+                    CheckBox subBox;
+                    if(viewIds[0]) {
+                        subBox = newAreaGroup.findViewById(R.id.firstBox);
+                        subBox.setChecked(true);
+                    } if(viewIds[1]) {
+                        subBox = newAreaGroup.findViewById(R.id.secondBox);
+                        subBox.setChecked(true);
+                    } if(viewIds[2]) {
+                        subBox = newAreaGroup.findViewById(R.id.thirdBox);
+                        subBox.setChecked(true);
+                    } if(viewIds[3]) {
+                        subBox = newAreaGroup.findViewById(R.id.fourthBox);
+                        subBox.setChecked(true);
                     }
+
                 } else {
 
                     select.setChecked(false);
 
-                    for (int i = 3; i < 7; i++) {
-
-                        if (viewIds[i] != 0) {
-
-                            CheckBox subBox = newAreaGroup.findViewById(viewIds[i]+100);
-                            subBox.setChecked(false);
-                        }
+                    CheckBox subBox;
+                    if(viewIds[0]) {
+                        subBox = newAreaGroup.findViewById(R.id.firstBox);
+                        subBox.setChecked(false);
+                    } if(viewIds[1]) {
+                        subBox = newAreaGroup.findViewById(R.id.secondBox);
+                        subBox.setChecked(false);
+                    } if(viewIds[2]) {
+                        subBox = newAreaGroup.findViewById(R.id.thirdBox);
+                        subBox.setChecked(false);
+                    } if(viewIds[3]) {
+                        subBox = newAreaGroup.findViewById(R.id.fourthBox);
+                        subBox.setChecked(false);
                     }
                 }
             }
@@ -211,14 +189,21 @@ public class WorkArea extends ConstraintLayout {
 
     public void cancelWorkEntries() {
 
-        newAreaGroup.findViewById(viewIds[2]).setVisibility(View.VISIBLE);
+        newAreaGroup.findViewById(R.id.newCostButton).setVisibility(View.VISIBLE);
 
-        for (int i = 3; i < 7; i++) {
-
-            if (viewIds[i] != 0) {
-                CheckBox select = newAreaGroup.findViewById(i+100);
-                select.setVisibility(View.GONE);
-            }
+        CheckBox subBox;
+        if(viewIds[0]) {
+            subBox = newAreaGroup.findViewById(R.id.firstBox);
+            subBox.setVisibility(View.GONE);
+        } if(viewIds[1]) {
+            subBox = newAreaGroup.findViewById(R.id.secondBox);
+            subBox.setVisibility(View.GONE);
+        } if(viewIds[2]) {
+            subBox = newAreaGroup.findViewById(R.id.thirdBox);
+            subBox.setVisibility(View.GONE);
+        } if(viewIds[3]) {
+            subBox = newAreaGroup.findViewById(R.id.fourthBox);
+            subBox.setVisibility(View.GONE);
         }
 
         CheckBox select = newAreaGroup.findViewById(R.id.mainCheckBox);
@@ -227,105 +212,12 @@ public class WorkArea extends ConstraintLayout {
 
     public void deleteWorkEntries(int num) {
 
-        CheckBox select = newAreaGroup.findViewById(R.id.mainCheckBox);
-        select.setVisibility(View.GONE);
-        if(!select.isChecked()) {
-            for (int i = 3; i < 7; i++) {
+        if(viewIds[0]) {
 
-                if (viewIds[i] != 0) {
-                    CheckBox selectBox = newAreaGroup.findViewById(i + 100);
-                    selectBox.setVisibility(View.GONE);
-                    if(selectBox.isChecked()) {
-
-                        EditText costItem = newAreaGroup.findViewById(i);
-
-                        costItem.setId(-1);
-                        selectBox.setId(-1);
-                        newAreaLayout.removeView(costItem);
-                        newAreaLayout.removeView(selectBox);
-
-                        for(int j = i; j < 6; j++) {
-
-                            if(viewIds[j+1] != 0) {
-                                EditText nextCost = newAreaGroup.findViewById(j + 1);
-                                CheckBox nextBox = newAreaGroup.findViewById(j + 101);
-                                nextCost.setId(j);
-                                nextBox.setId(j + 100);
-                                nextBox.setVisibility(View.GONE);
-                            }
-                        }
-
-                        for(int j = 3; j < 7; j++) {
-                            areaSet.clone(newAreaLayout);
-                            areaSet.clear(j);
-                            areaSet.applyTo(newAreaLayout);
-                        }
-
-                        for(int j = 6; j >=3; j--) {
-                            if(viewIds[j] != 0) {
-                                viewIds[j] = 0;
-                                if(j != 3) {
-                                    previousCostId = j-1;
-                                }
-                                j = 2;
-                            }
-                        }
-
-                        System.out.println(Arrays.toString(viewIds));
-
-                        for(int j = 3; j < 7; j++) {
-                            areaSet.clone(newAreaLayout);
-                            if(j == 3 && viewIds[j] != 0) {
-                                areaSet.connect(j, ConstraintSet.TOP, R.id.costInitial, ConstraintSet.BOTTOM);
-                                areaSet.connect(j, ConstraintSet.LEFT, R.id.costInitial, ConstraintSet.LEFT);
-                            } else if(viewIds[j] != 0 && j == 4) {
-                                areaSet.connect(j, ConstraintSet.TOP, j-1, ConstraintSet.BOTTOM);
-                                areaSet.connect(j, ConstraintSet.LEFT, R.id.costInitial, ConstraintSet.LEFT);
-                            }
-                            areaSet.applyTo(newAreaLayout);
-                        }
-
-                        for(int j = 3; j < 7; j++) {
-                            if(viewIds[j] != 0) {
-                                EditText fillFields = newAreaGroup.findViewById(j);
-                                if (fillFields != null) {
-                                    fillFields.setText(j + "");
-                                }
-                            }
-                        }
-
-                        /*
-                        if(i != 3) {
-                            areaSet.clone(newAreaLayout);
-                            areaSet.connect(i, ConstraintSet.TOP, i - 1, ConstraintSet.BOTTOM, 0);
-                            areaSet.connect(i, ConstraintSet.LEFT, R.id.costInitial, ConstraintSet.LEFT, 0);
-                            areaSet.applyTo(newAreaLayout);
-                        } else {
-                            areaSet.clone(newAreaLayout);
-                            areaSet.connect(i, ConstraintSet.TOP, R.id.costInitial, ConstraintSet.BOTTOM, 0);
-                            areaSet.connect(i, ConstraintSet.LEFT, R.id.costInitial, ConstraintSet.LEFT, 0);
-                            areaSet.applyTo(newAreaLayout);
-                        }*/
-                        costCount--;
-                        i--;
-                    }
-                }
-            }
-        } else {
-
-            newAreaLayout.removeView(newAreaGroup);
-            ((ViewManager)newAreaGroup.getParent()).removeView(newAreaGroup);
-
-            for(int i = num; i < 4; i++) {
-                stateTrack[i] = stateTrack[i+1];
-            }
-            stateTrack[4] = null;
-            removedArea = true;
         }
-        newAreaGroup.findViewById(viewIds[2]).setVisibility(View.VISIBLE);
     }
 
-    public int[] getCostArray() {
+    public boolean[] getCostArray() {
 
         return this.viewIds;
     }
