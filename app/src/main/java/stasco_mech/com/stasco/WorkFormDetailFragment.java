@@ -50,7 +50,6 @@ public class WorkFormDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        areaId = 10;
         previousAreaId = null;
         areaCount = 0;
         System.out.println("AREA COUNT JUST GOT ZERO");
@@ -210,6 +209,7 @@ public class WorkFormDetailFragment extends Fragment {
     public void addNewArea() {
 
         WorkArea newAreaGroup = new WorkArea(getContext(), areaLayout);
+        newAreaGroup.setId(areaId);
         stateTrack[areaCount] = newAreaGroup;
 
         areaCount++;

@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
@@ -25,14 +26,29 @@ public class WorkArea extends ConstraintLayout {
 
     public int previousCostId = 1;
     ConstraintLayout areaLayout;
-    boolean[] viewIds = new boolean[4];
     public int costCount = 0;
     final ConstraintSet areaSet = new ConstraintSet();
     ConstraintLayout newAreaLayout;
     View newAreaGroup;
     public static boolean removedArea;
-
+    boolean[] viewIds = new boolean[4];
     private LayoutInflater inflater;
+
+    CheckBox mainBox;
+    CheckBox firstBox;
+    CheckBox secondBox;
+    CheckBox thirdBox;
+    CheckBox fourthBox;
+    EditText initialCost;
+    EditText firstCost;
+    EditText secondCost;
+    EditText thirdCost;
+    EditText fourthCost;
+    ImageButton newCostButton;
+
+    EditText[] costFields;
+    CheckBox[] costBoxes;
+    ArrayList<String> costStrings = new ArrayList<String>();
 
     public WorkArea(Context context) {
         super(context);
@@ -65,24 +81,38 @@ public class WorkArea extends ConstraintLayout {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         newAreaGroup = inflater.inflate(R.layout.area_group, areaLayout, false);
-        final ImageButton addCost = newAreaGroup.findViewById(R.id.newCostButton);
-        final CheckBox mainCheck = newAreaGroup.findViewById(R.id.mainCheckBox);
-        mainCheck.setVisibility(View.GONE);
+
+        mainBox = newAreaGroup.findViewById(R.id.mainCheckBox);
+        firstBox = newAreaGroup.findViewById(R.id.firstBox);
+        secondBox = newAreaGroup.findViewById(R.id.secondBox);
+        thirdBox = newAreaGroup.findViewById(R.id.thirdBox);
+        fourthBox = newAreaGroup.findViewById(R.id.fourthBox);
+        initialCost = newAreaGroup.findViewById(R.id.costInitial);
+        firstCost = newAreaGroup.findViewById(R.id.firstCost);
+        secondCost = newAreaGroup.findViewById(R.id.secondCost);
+        thirdCost = newAreaGroup.findViewById(R.id.thirdCost);
+        fourthCost = newAreaGroup.findViewById(R.id.fourthCost);
+        newCostButton = newAreaGroup.findViewById(R.id.newCostButton);
+
+        costFields = new EditText[]{firstCost, secondCost, thirdCost, fourthCost};
+        costBoxes = new CheckBox[]{firstBox, secondBox, thirdBox, fourthBox};
+
+        mainBox.setVisibility(View.GONE);
         newAreaLayout = newAreaGroup.findViewById(R.id.areaGroupLayout);
         newAreaLayout.setId(WorkFormDetailFragment.areaId);
 
         ConstraintLayout.LayoutParams areaLayoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, WRAP_CONTENT);
         if(previousAreaId == null) {
-            System.out.println("LABEL AREA ID " + WorkFormDetailFragment.labelAreaId);
             areaLayoutParams.topToBottom = WorkFormDetailFragment.labelAreaId;
         } else {
+            System.out.println("Printing at add " + previousAreaId);
             areaLayoutParams.topToBottom = previousAreaId;
         }
         newAreaLayout.setLayoutParams(areaLayoutParams);
 
         previousAreaId = WorkFormDetailFragment.areaId;
 
-        addCost.setOnClickListener(new View.OnClickListener() {
+        newCostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(costCount < 4) {
@@ -95,92 +125,69 @@ public class WorkArea extends ConstraintLayout {
 
     public void addNewCost() {
 
-        EditText newCostNum;
         if(!viewIds[0]) {
-            newCostNum = newAreaGroup.findViewById(R.id.firstCost);
-            newCostNum.setVisibility(View.VISIBLE);
+            firstCost.setVisibility(View.VISIBLE);
             viewIds[0] = true;
         } else if(!viewIds[1]) {
-            newCostNum = newAreaGroup.findViewById(R.id.secondCost);
-            newCostNum.setVisibility(View.VISIBLE);
+            secondCost.setVisibility(View.VISIBLE);
             viewIds[1] = true;
         } else if(!viewIds[2]) {
-            newCostNum = newAreaGroup.findViewById(R.id.thirdCost);
-            newCostNum.setVisibility(View.VISIBLE);
+            thirdCost.setVisibility(View.VISIBLE);
             viewIds[2] = true;
         } else if(!viewIds[3]) {
-            newCostNum = newAreaGroup.findViewById(R.id.fourthCost);
-            newCostNum.setVisibility(View.VISIBLE);
+            fourthCost.setVisibility(View.VISIBLE);
             viewIds[3] = true;
         }
         costCount++;
     }
 
 
-    public void editWorkEntries(int first) {
+    public void editWorkEntries(int areaIndex) {
 
-        newAreaGroup.findViewById(R.id.newCostButton).setVisibility(View.GONE);
+        newCostButton.setVisibility(View.GONE);
 
-        CheckBox checkBox;
         if(viewIds[0]) {
-            checkBox = newAreaGroup.findViewById(R.id.firstBox);
-            checkBox.setVisibility(View.VISIBLE);
+            firstBox.setVisibility(View.VISIBLE);
         } if(viewIds[1]) {
-            checkBox = newAreaGroup.findViewById(R.id.secondBox);
-            checkBox.setVisibility(View.VISIBLE);
+            secondBox.setVisibility(View.VISIBLE);
         } if(viewIds[2]) {
-            checkBox = newAreaGroup.findViewById(R.id.thirdBox);
-            checkBox.setVisibility(View.VISIBLE);
+            thirdBox.setVisibility(View.VISIBLE);
         } if(viewIds[3]) {
-            checkBox = newAreaGroup.findViewById(R.id.fourthBox);
-            checkBox.setVisibility(View.VISIBLE);
+            fourthBox.setVisibility(View.VISIBLE);
         }
 
-        final CheckBox select = newAreaGroup.findViewById(R.id.mainCheckBox);
-        select.setVisibility(View.VISIBLE);
-        if(first == 0) {
-            select.setVisibility(View.GONE);
+        mainBox.setVisibility(View.VISIBLE);
+        if(areaIndex == 0) { //Hides box for first area since there should always be at least one area and cost item
+            mainBox.setVisibility(View.GONE);
         }
 
-        select.setOnClickListener(new View.OnClickListener() {
+        mainBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (select.isChecked()) {
+                if (mainBox.isChecked()) {
 
-                    select.setChecked(true);
-                    CheckBox subBox;
+                    mainBox.setChecked(true);
                     if(viewIds[0]) {
-                        subBox = newAreaGroup.findViewById(R.id.firstBox);
-                        subBox.setChecked(true);
+                        firstBox.setChecked(true);
                     } if(viewIds[1]) {
-                        subBox = newAreaGroup.findViewById(R.id.secondBox);
-                        subBox.setChecked(true);
+                        secondBox.setChecked(true);
                     } if(viewIds[2]) {
-                        subBox = newAreaGroup.findViewById(R.id.thirdBox);
-                        subBox.setChecked(true);
+                        thirdBox.setChecked(true);
                     } if(viewIds[3]) {
-                        subBox = newAreaGroup.findViewById(R.id.fourthBox);
-                        subBox.setChecked(true);
+                        fourthBox.setChecked(true);
                     }
-
                 } else {
 
-                    select.setChecked(false);
-
-                    CheckBox subBox;
+                    mainBox.setChecked(false);
                     if(viewIds[0]) {
-                        subBox = newAreaGroup.findViewById(R.id.firstBox);
-                        subBox.setChecked(false);
+                        firstBox.setChecked(false);
                     } if(viewIds[1]) {
-                        subBox = newAreaGroup.findViewById(R.id.secondBox);
-                        subBox.setChecked(false);
+                        secondBox.setChecked(false);
                     } if(viewIds[2]) {
-                        subBox = newAreaGroup.findViewById(R.id.thirdBox);
-                        subBox.setChecked(false);
+                        thirdBox.setChecked(false);
                     } if(viewIds[3]) {
-                        subBox = newAreaGroup.findViewById(R.id.fourthBox);
-                        subBox.setChecked(false);
+                        fourthBox.setChecked(false);
                     }
                 }
             }
@@ -189,32 +196,60 @@ public class WorkArea extends ConstraintLayout {
 
     public void cancelWorkEntries() {
 
-        newAreaGroup.findViewById(R.id.newCostButton).setVisibility(View.VISIBLE);
+        newCostButton.setVisibility(View.VISIBLE);
 
-        CheckBox subBox;
         if(viewIds[0]) {
-            subBox = newAreaGroup.findViewById(R.id.firstBox);
-            subBox.setVisibility(View.GONE);
+            firstBox.setVisibility(View.GONE);
         } if(viewIds[1]) {
-            subBox = newAreaGroup.findViewById(R.id.secondBox);
-            subBox.setVisibility(View.GONE);
+            secondBox.setVisibility(View.GONE);
         } if(viewIds[2]) {
-            subBox = newAreaGroup.findViewById(R.id.thirdBox);
-            subBox.setVisibility(View.GONE);
+            thirdBox.setVisibility(View.GONE);
         } if(viewIds[3]) {
-            subBox = newAreaGroup.findViewById(R.id.fourthBox);
-            subBox.setVisibility(View.GONE);
+            fourthBox.setVisibility(View.GONE);
         }
-
-        CheckBox select = newAreaGroup.findViewById(R.id.mainCheckBox);
-        select.setVisibility(View.GONE);
+        mainBox.setVisibility(View.GONE);
     }
 
     public void deleteWorkEntries(int num) {
 
-        if(viewIds[0]) {
+        if(mainBox.isChecked()) {
+            ((ViewGroup) newAreaGroup.getParent()).removeView(newAreaGroup);
+            for(int i = num; i < stateTrack.length-1; i++) {
+                stateTrack[i] = stateTrack[i+1];
+            }
+            stateTrack[stateTrack.length-1] = null;
+            removedArea = true;
+            for(int i = stateTrack.length-1; i >= 0; i--) {
+                if(stateTrack[i] != null) {
+                    System.out.println("Printing at removal " + stateTrack[i].getId());
+                    previousAreaId = stateTrack[i].getId();
+                    i = -1;
+                }
+            }
+        } else {
+            for (int i = 0; i < costBoxes.length; i++) {
+                if (viewIds[i] && !costBoxes[i].isChecked()) {
+                    costStrings.add(costFields[i].getText().toString());
+                }
+                viewIds[i] = false;
+                costBoxes[i].setChecked(false);
+            }
+            mainBox.setVisibility(View.GONE);
 
+            for (int i = costFields.length - 1; i >= 0; i--) {
+                if (i < costStrings.size()) {
+                    costFields[i].setText(costStrings.get(i));
+                    costBoxes[i].setVisibility(View.GONE);
+                    viewIds[i] = true;
+                } else {
+                    costFields[i].setVisibility(View.GONE);
+                    costBoxes[i].setVisibility(View.GONE);
+                    costCount--;
+                }
+            }
+            costStrings.clear();
         }
+        newCostButton.setVisibility(View.VISIBLE);
     }
 
     public boolean[] getCostArray() {
