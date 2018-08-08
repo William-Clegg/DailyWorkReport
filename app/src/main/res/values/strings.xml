@@ -25,6 +25,7 @@
     <string name="rainLight">Light Rain</string>
     <string name="rainHeavy">Heavy Rain</string>
     <string name="newAreaPrompt">Add an Area</string>
+    <string name="newEmployeePrompt">Add Someone</string>
     <string name="removeAreaPrompt">Remove Entries</string>
     <string name="newAreaButtonString">Adds a work area</string>
     <string name="removeButtonString">Select entries to remove</string>

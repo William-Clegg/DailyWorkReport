@@ -25,18 +25,18 @@ import static stasco_mech.com.stasco.WorkArea.removedArea;
  * on handsets.
  */
 public class WorkFormDetailFragment extends Fragment {
-    public ImageButton addArea;
-    public ImageButton selectEntries;
-    public static int labelAreaId;
-    public Button deleteEntries;
-    public Button cancelSelection;
-    public static Bundle mState = new Bundle();
-    public static int areaCount = 0;
+    private ImageButton addArea;
+    private ImageButton selectEntries;
+    static int labelAreaId;
+    private Button deleteEntries;
+    private Button cancelSelection;
+    private static Bundle mState = new Bundle();
+    static int areaCount = 0;
     ConstraintLayout areaLayout;
-    public static int areaId = 10;
-    public static Integer previousAreaId;
-    public static WorkArea[] stateTrack = new WorkArea[5];
-    public static boolean stopped;
+    static int areaId = 10;
+    static Integer previousAreaId;
+    static WorkArea[] stateTrack = new WorkArea[5];
+    static boolean stopped;
     ConstraintSet mainAreaSet = new ConstraintSet();
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -52,7 +52,6 @@ public class WorkFormDetailFragment extends Fragment {
 
         previousAreaId = null;
         areaCount = 0;
-        System.out.println("AREA COUNT JUST GOT ZERO");
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
@@ -61,7 +60,7 @@ public class WorkFormDetailFragment extends Fragment {
             mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+            CollapsingToolbarLayout appBarLayout = activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
                 appBarLayout.setTitle(mItem.content);
             }
@@ -215,6 +214,7 @@ public class WorkFormDetailFragment extends Fragment {
         areaCount++;
         areaId++;
     }
+
 /*
     @Override
     public void onStop() {
