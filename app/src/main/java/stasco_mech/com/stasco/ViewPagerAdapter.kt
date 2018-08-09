@@ -1,10 +1,17 @@
 package stasco_mech.com.stasco
 
-import android.support.v4.view.PagerAdapter
-import android.view.View
+import android.content.Context
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 
-class ViewPagerAdapter(collection: View, pos: Int) : PagerAdapter() {
+class ViewPagerAdapter(context: Context?, fragmentManager: FragmentManager, private val employeeList: Array<String>) : FragmentPagerAdapter(fragmentManager) {
 
-    var pageId = 0
-    fun switchPage(pos)
+    override fun getItem(pos: Int): Fragment {
+        return TimeFormDetailFragment.newInstance(employeeList[pos])
+    }
+
+    override fun getCount(): Int {
+        return employeeList.size
+    }
 }

@@ -65,8 +65,18 @@ public class FormDetailActivity extends AppCompatActivity {
         // http://developer.android.com/guide/components/fragments.html
         //
 
-
-        if (savedInstanceState == null && FormListActivity.itemSelected.equals("2")) {
+        if (savedInstanceState == null && FormListActivity.itemSelected.equals("1")) {
+            // Create the detail fragment and add it to the activity
+            // using a fragment transaction.
+            Bundle arguments = new Bundle();
+            arguments.putString(TimeFormFragment.Companion.getARG_ITEM_ID(),
+                    getIntent().getStringExtra(TimeFormFragment.Companion.getARG_ITEM_ID()));
+            TimeFormFragment fragment = new TimeFormFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.form_detail_container, fragment)
+                    .commit();
+        } else if (savedInstanceState == null && FormListActivity.itemSelected.equals("2")) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();

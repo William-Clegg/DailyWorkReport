@@ -34,8 +34,16 @@
     <string name="deleteText">Delete</string>
     <string name="cancelText">Cancel</string>
 
+    <string-array name="employee_array">
+        <item>Albert, Allen</item>
+        <item>Garcia, Jesus</item>
+        <item>Grover, Kenneth</item>
+        <item>Harrington, Herbert</item>
+        <item>Lovingood, Stephen</item>
+        <item>Walker, Kareem</item>
+    </string-array>
+
     <string-array name="job_array">
-        <item>3191 - Trackside</item>
         <item>3193 - Punch Bowl</item>
         <item>3194 - The Sutton</item>
         <item>3198 - Chastain Park Amphitheater</item>
@@ -51,6 +59,13 @@
         <item>3208 - Hampton Inn</item>
         <item>3209 - Woodward Transportation</item>
         <item>3210 - Plaza Midtown</item>
+        <item>3211 - Rio Bravo Apartments</item>
+        <item>3212 - Cobb EMC Booster Pump</item>
+        <item>3213 - Coca-Cola Sales Service Center</item>
+        <item>3214 - Fox Theater Towers</item>
+        <item>3215 - Twelve24</item>
+        <item>3216 - Peachtree UMC Play Space</item>
+        <item>3217 - Hillside</item>
         <item>Other</item>
     </string-array>
 

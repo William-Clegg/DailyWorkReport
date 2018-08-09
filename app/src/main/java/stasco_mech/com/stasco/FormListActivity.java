@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import stasco_mech.com.stasco.dummy.DummyContent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -81,7 +82,16 @@ public class FormListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
                 if (mTwoPane) {
-                    if(item.id.equals("2")) {
+                    if(item.id.equals("1")) {
+                        itemSelected = "1";
+                        Bundle arguments = new Bundle();
+                        arguments.putString(TimeFormFragment.Companion.getARG_ITEM_ID(), item.id);
+                        FormDetailFragment fragment = new FormDetailFragment();
+                        fragment.setArguments(arguments);
+                        mParentActivity.getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.form_detail_container, fragment)
+                                .commit();
+                    } else if(item.id.equals("2")) {
                         itemSelected = "2";
                         Bundle arguments = new Bundle();
                         arguments.putString(FormDetailFragment.ARG_ITEM_ID, item.id);
@@ -101,7 +111,15 @@ public class FormListActivity extends AppCompatActivity {
                                 .commit();
                     }
                 } else {
-                    if(item.id.equals("2")) {
+                    if(item.id.equals("1")) {
+                        itemSelected = "1";
+                        Context context = view.getContext();
+                        Intent intent = new Intent(context, FormDetailActivity.class);
+                        intent.putExtra(TimeFormFragment.Companion.getARG_ITEM_ID(), item.id);
+
+                        context.startActivity(intent);
+
+                    } else if(item.id.equals("2")) {
                         itemSelected = "2";
                         Context context = view.getContext();
                         Intent intent = new Intent(context, FormDetailActivity.class);
