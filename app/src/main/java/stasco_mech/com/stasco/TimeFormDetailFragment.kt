@@ -5,8 +5,12 @@ import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageButton
 import kotlinx.android.synthetic.main.activity_form_detail.*
+import stasco_mech.com.stasco.R.layout.time_form_detail
 import stasco_mech.com.stasco.dummy.DummyContent
 import java.nio.InvalidMarkException
 
@@ -42,5 +46,13 @@ class TimeFormDetailFragment() : Fragment() {
                 appBarLayout.title = mItem?.content
             }
         }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
+
+        val rootView = inflater?.inflate(time_form_detail, container, false)
+        areaLayout =
+
+        return rootView
     }
 }

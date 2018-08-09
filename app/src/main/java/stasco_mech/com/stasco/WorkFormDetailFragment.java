@@ -72,16 +72,16 @@ public class WorkFormDetailFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.work_form_detail, container, false);
         labelAreaId = rootView.findViewById(R.id.work_form_detail_header).getId();
-        areaLayout = (ConstraintLayout) rootView.findViewById(R.id.work_form_detail_fragment_container);
+        areaLayout = rootView.findViewById(R.id.work_form_detail_fragment_container);
 
         if(!stopped) {
             addNewArea();
         }
 
-        addArea = (ImageButton) rootView.findViewById(R.id.newAreaButton);
-        selectEntries = (ImageButton) rootView.findViewById(R.id.removeAreaButton);
-        deleteEntries = (Button) rootView.findViewById(R.id.deleteEntries);
-        cancelSelection = (Button) rootView.findViewById(R.id.cancelSelection);
+        addArea = rootView.findViewById(R.id.newAreaButton);
+        selectEntries = rootView.findViewById(R.id.removeAreaButton);
+        deleteEntries = rootView.findViewById(R.id.deleteEntries);
+        cancelSelection = rootView.findViewById(R.id.cancelSelection);
 
         if (mItem != null) {
 
