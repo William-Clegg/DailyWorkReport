@@ -133,7 +133,9 @@ public class WorkArea extends ConstraintLayout {
 
         newCostButton.setVisibility(View.GONE);
         for(int i = 0; i < costBoxes.length; i++) {
-            costBoxes[i].setVisibility(View.VISIBLE);
+            if(viewIds[i]) {
+                costBoxes[i].setVisibility(View.VISIBLE);
+            }
         }
 
         mainBox.setVisibility(View.VISIBLE);

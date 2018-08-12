@@ -19,9 +19,7 @@ import stasco_mech.com.stasco.dummy.DummyContent
 import java.util.*
 import kotlin.collections.ArrayList
 
-class TimeFormFragment() : Fragment() {
-    private lateinit var areaLayout: ConstraintLayout
-    private lateinit var mainAreaSet: ConstraintSet
+class TimeFormFragment : Fragment() {
     private lateinit var viewPager: ViewPager
     private val employeeIndex = 0
     private lateinit var employeeList: Array<String>
@@ -39,9 +37,7 @@ class TimeFormFragment() : Fragment() {
             var mItem: DummyContent.DummyItem? = DummyContent.ITEM_MAP.get(arguments?.getString(ARG_ITEM_ID))
             var activity = this.activity
             var appBarLayout: CollapsingToolbarLayout? = activity?.toolbar_layout
-            println("???????????????????")
             if(appBarLayout != null) {
-                println("!!!!!!!!!!!!!!!!!" + mItem?.content)
                 appBarLayout.title = mItem?.content
             }
         }
@@ -59,6 +55,6 @@ class TimeFormFragment() : Fragment() {
     }
 
     private fun createAdapter() : PagerAdapter {
-        return ViewPagerAdapter(this.context, childFragmentManager, employeeList)
+        return ViewPagerAdapter(activity, childFragmentManager, employeeList)
     }
 }

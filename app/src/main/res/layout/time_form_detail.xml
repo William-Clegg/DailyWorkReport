@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/work_form_detail_scroll_container"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/time_form_detail_fragment_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context=".FormDetailActivity">
-</ScrollView>-->
-<EditText xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/editor"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:inputType="textMultiLine"
-    android:text="HI FRIEND"
-    android:gravity="start|top" />
+    android:layout_height="wrap_content">
+
+</android.support.constraint.ConstraintLayout>
 
 
 

@@ -5,13 +5,19 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
-class ViewPagerAdapter(context: Context?, fragmentManager: FragmentManager, private val employeeList: Array<String>) : FragmentPagerAdapter(fragmentManager) {
+class ViewPagerAdapter(var context: Context?, fragmentManager: FragmentManager, val employeeList: Array<String>) : FragmentPagerAdapter(fragmentManager) {
 
-    override fun getItem(pos: Int): Fragment {
-        return TimeFormDetailFragment.newInstance(employeeList[pos])
+    var size = employeeList.size
+
+    override fun getCount() : Int {
+        return size
     }
 
-    override fun getCount(): Int {
-        return employeeList.size
+    override fun getItem(position: Int) : Fragment {
+        return TimeFormDetailFragment.newInstance(position)
+    }
+
+    override fun getPageTitle(position: Int) : String {
+        return TimeFormDetailFragment.getTitle(context, position, employeeList)
     }
 }
