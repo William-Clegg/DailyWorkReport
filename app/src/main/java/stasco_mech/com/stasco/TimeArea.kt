@@ -15,6 +15,7 @@ import java.util.ArrayList
 import android.support.constraint.ConstraintSet.WRAP_CONTENT
 import kotlinx.android.synthetic.main.area_group.view.*
 import kotlinx.android.synthetic.main.time_form_area.view.*
+import stasco_mech.com.stasco.TimeFormDetailFragment.Companion.previousTimeAreaId
 import stasco_mech.com.stasco.WorkFormDetailFragment.previousAreaId
 import stasco_mech.com.stasco.WorkFormDetailFragment.stateTrack
 
@@ -33,7 +34,11 @@ class TimeArea : ConstraintLayout {
     }
 
     constructor(context: Context, areaLayout: ConstraintLayout?) : super(context) {
-        initView(context, areaLayout)
+        initView(context, areaLayout, 0, 0)
+    }
+
+    constructor(context: Context, areaLayout: ConstraintLayout?, numCosts: Int, currentArea: Int) : super(context) {
+        initView(context, areaLayout, numCosts, currentArea)
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
@@ -50,21 +55,39 @@ class TimeArea : ConstraintLayout {
         areaLayout!!.addView(inflater!!.inflate(R.layout.time_form_area, areaLayout, false))
     }
 
-    private fun initView(context: Context, areaLayout: ConstraintLayout?) {
-
-        val timeFirstCost: EditText? = timeFirstCost
-        val timeSecondCost: EditText? = timeSecondCost
-        val timeThirdCost: EditText? = timeThirdCost
-        val timeFourthCost: EditText? = timeFourthCost
+    private fun initView(context: Context, areaLayout: ConstraintLayout?, numCosts: Int, currentArea: Int) {
 
         inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         newAreaGroup = inflater!!.inflate(R.layout.time_form_area, areaLayout, false)
-
-        costFields = arrayOf(timeFirstCost, timeSecondCost, timeThirdCost, timeFourthCost)
+        costFields = arrayOf(newAreaGroup.timeFirstCost, newAreaGroup.timeSecondCost, newAreaGroup.timeThirdCost, newAreaGroup.timeFourthCost)
+        println("getting text from area number..." + currentArea)
+        println("the text is " + stateTrack[currentArea].getNewAreaGroup().areaNameInitial.text.toString())
+        val areaText = stateTrack[currentArea].getNewAreaGroup().areaNameInitial.text
+        val costText = stateTrack[currentArea].getNewAreaGroup().costInitial.text
+        newAreaGroup.timeAreaNameInitial.text = areaText
+        newAreaGroup.timeCostInitial.text = costText
+        println("fields just got " + newAreaGroup.timeAreaNameInitial.text.toString() + " and " + newAreaGroup.timeCostInitial.text.toString())
+        newAreaLayout = newAreaGroup.timeGroupLayout
 
         val areaLayoutParams = ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, WRAP_CONTENT)
+        if (previousTimeAreaId != 0) {
+            areaLayoutParams.topToBottom = previousTimeAreaId
+        } else {
+            //newAreaGroup.timeAreaDivider.visibility = View.GONE
+        }
+        for(i in 0 until numCosts) {
+            addNewCost(i)
+        }
+        println("" + previousTimeAreaId + " -> " + (previousTimeAreaId+1))
+        previousTimeAreaId++
 
+        newAreaLayout.id = previousTimeAreaId
         areaLayout?.addView(newAreaLayout, areaLayoutParams)
+    }
+
+    fun addNewCost(num: Int) {
+
+        costFields[num]?.visibility = View.VISIBLE
     }
 }

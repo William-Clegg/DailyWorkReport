@@ -1,6 +1,9 @@
 package stasco_mech.com.stasco;
 
 import android.app.Activity;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -37,6 +40,7 @@ public class WorkFormDetailFragment extends Fragment {
     static Integer previousAreaId;
     static WorkArea[] stateTrack = new WorkArea[5];
     static boolean stopped;
+    private WorkFormViewModel workFormViewModel;
     ConstraintSet mainAreaSet = new ConstraintSet();
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -49,6 +53,8 @@ public class WorkFormDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        workFormViewModel = ViewModelProviders.of(this).get(WorkFormViewModel.class);
 
         previousAreaId = null;
         areaCount = 0;

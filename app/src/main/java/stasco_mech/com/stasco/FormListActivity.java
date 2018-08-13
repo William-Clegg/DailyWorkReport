@@ -82,8 +82,8 @@ public class FormListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
                 if (mTwoPane) {
-                    if(item.id.equals("1")) {
-                        itemSelected = "1";
+                    if(item.id.equals("3")) {
+                        itemSelected = "3";
                         Bundle arguments = new Bundle();
                         arguments.putString(TimeFormFragment.Companion.getARG_ITEM_ID(), item.id);
                         FormDetailFragment fragment = new FormDetailFragment();
@@ -91,8 +91,8 @@ public class FormListActivity extends AppCompatActivity {
                         mParentActivity.getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.form_detail_container, fragment)
                                 .commit();
-                    } else if(item.id.equals("2")) {
-                        itemSelected = "2";
+                    } else if(item.id.equals("1")) {
+                        itemSelected = "1";
                         Bundle arguments = new Bundle();
                         arguments.putString(FormDetailFragment.ARG_ITEM_ID, item.id);
                         FormDetailFragment fragment = new FormDetailFragment();
@@ -100,8 +100,8 @@ public class FormListActivity extends AppCompatActivity {
                         mParentActivity.getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.form_detail_container, fragment)
                                 .commit();
-                    } else if (item.id.equals("3")) {
-                        itemSelected = "3";
+                    } else if (item.id.equals("2")) {
+                        itemSelected = "2";
                         Bundle arguments = new Bundle();
                         arguments.putString(WorkFormDetailFragment.ARG_ITEM_ID, item.id);
                         WorkFormDetailFragment fragment = new WorkFormDetailFragment();

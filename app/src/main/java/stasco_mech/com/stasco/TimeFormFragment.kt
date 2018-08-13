@@ -3,6 +3,7 @@ package stasco_mech.com.stasco
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -24,14 +25,12 @@ class TimeFormFragment : Fragment() {
     private val employeeIndex = 0
     private lateinit var employeeList: Array<String>
 
-    companion object {                              //Figure out later if all 'static' variables can be placed in the same Companion object or if they need their own
+    companion object {
         val ARG_ITEM_ID: String = "item_id"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
-
-
         if (arguments?.containsKey(ARG_ITEM_ID) ?: false) {
 
             var mItem: DummyContent.DummyItem? = DummyContent.ITEM_MAP.get(arguments?.getString(ARG_ITEM_ID))
@@ -44,14 +43,15 @@ class TimeFormFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
-
         val rootView = inflater.inflate(R.layout.time_form, container, false)
-        var viewPager = rootView.pager
-
         employeeList = resources.getStringArray(R.array.employee_array)
-        viewPager.adapter = createAdapter()
-
         return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val mPager = pager
+        mPager.adapter = createAdapter()
     }
 
     private fun createAdapter() : PagerAdapter {

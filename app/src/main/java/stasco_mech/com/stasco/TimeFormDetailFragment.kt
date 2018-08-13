@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_form_detail.*
 import kotlinx.android.synthetic.main.time_form_area.view.*
 import kotlinx.android.synthetic.main.time_form_detail.*
 import kotlinx.android.synthetic.main.time_form_detail.view.*
+import stasco_mech.com.stasco.R.layout.time_form_area
 import stasco_mech.com.stasco.R.layout.time_form_detail
 import stasco_mech.com.stasco.WorkFormDetailFragment.stateTrack
 import stasco_mech.com.stasco.dummy.DummyContent
@@ -29,14 +30,13 @@ class TimeFormDetailFragment : Fragment() {
     companion object {
         val ARG_ITEM_ID: String = "item_id"
         private val KEY_POSITION = "position"
-        //private val KEY_EMPLOYEE = "employee"
+        var previousTimeAreaId = 0
 
         fun newInstance(position: Int) : TimeFormDetailFragment {
 
-            var fragment = TimeFormDetailFragment()
-            var args = Bundle()
+            val fragment = TimeFormDetailFragment()
+            val args = Bundle()
             args.putInt(KEY_POSITION, position)
-            //args.putString(KEY_EMPLOYEE, employee)
             fragment.arguments = args
             return fragment
         }
@@ -48,15 +48,14 @@ class TimeFormDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
 
-        val employeeList: Array<String> = resources.getStringArray(R.array.employee_array)
         val rootView = inflater.inflate(time_form_detail, container, false)
-        var areaLayout: ConstraintLayout? = time_form_detail_fragment_container
-        val position = arguments?.getInt(KEY_POSITION, -1)
-        //val employee = arguments?.getString(KEY_EMPLOYEE, "FREDDIE!!")
-        for(area in 0..4) {
-            if(stateTrack[area] != null) {
-                println(area)
-                TimeArea(context!!, areaLayout).timeFirstCost.visibility
+        val areaLayout: ConstraintLayout? = rootView.time_form_detail_fragment_container
+        for (area in stateTrack.indices) {
+
+            if (stateTrack[area] != null) {
+                println("area number " + area)
+                println(Arrays.toString(stateTrack[area].costArray))
+                TimeArea(context!!, areaLayout, stateTrack[area].costArray.filter { it == true }.size, area)
             }
         }
 

@@ -36,6 +36,7 @@ public class WorkArea extends ConstraintLayout {
     EditText thirdCost;
     EditText fourthCost;
     ImageButton newCostButton;
+    View areaDivider;
 
     EditText[] costFields;
     CheckBox[] costBoxes;
@@ -85,6 +86,7 @@ public class WorkArea extends ConstraintLayout {
         thirdCost = newAreaGroup.findViewById(R.id.thirdCost);
         fourthCost = newAreaGroup.findViewById(R.id.fourthCost);
         newCostButton = newAreaGroup.findViewById(R.id.newCostButton);
+        areaDivider = newAreaGroup.findViewById(R.id.areaDivider);
 
         costFields = new EditText[]{firstCost, secondCost, thirdCost, fourthCost};
         costBoxes = new CheckBox[]{firstBox, secondBox, thirdBox, fourthBox};
@@ -95,6 +97,7 @@ public class WorkArea extends ConstraintLayout {
 
         ConstraintLayout.LayoutParams areaLayoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, WRAP_CONTENT);
         if(previousAreaId == null) {
+            areaDivider.setVisibility(View.GONE);
             areaLayoutParams.topToBottom = WorkFormDetailFragment.labelAreaId;
         } else {
             areaLayoutParams.topToBottom = previousAreaId;
@@ -226,7 +229,6 @@ public class WorkArea extends ConstraintLayout {
     }
 
     public boolean[] getCostArray() {
-
         return this.viewIds;
     }
 
@@ -236,9 +238,5 @@ public class WorkArea extends ConstraintLayout {
 
     public View getNewAreaGroup() {
         return newAreaGroup;
-    }
-
-    public void saveState() {
-
     }
 }
