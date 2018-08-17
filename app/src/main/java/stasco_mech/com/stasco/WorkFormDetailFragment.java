@@ -40,7 +40,7 @@ public class WorkFormDetailFragment extends Fragment {
     static Integer previousAreaId;
     static WorkArea[] stateTrack = new WorkArea[5];
     static boolean stopped;
-    private WorkFormViewModel workFormViewModel;
+    WorkFormViewModel workFormViewModel;
     ConstraintSet mainAreaSet = new ConstraintSet();
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -213,7 +213,7 @@ public class WorkFormDetailFragment extends Fragment {
 
     public void addNewArea() {
 
-        WorkArea newAreaGroup = new WorkArea(getContext(), areaLayout);
+        WorkArea newAreaGroup = new WorkArea(getContext(), getActivity(),areaLayout);
         newAreaGroup.setId(areaId);
         stateTrack[areaCount] = newAreaGroup;
 

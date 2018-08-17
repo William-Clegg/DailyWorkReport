@@ -1,6 +1,8 @@
 package stasco_mech.com.stasco;
 
+import android.app.Activity;
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.constraint.ConstraintLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,11 +16,15 @@ import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
+import stasco_mech.com.stasco.databinding.AreaGroupBinding;
+
 import static android.support.constraint.ConstraintSet.WRAP_CONTENT;
 import static stasco_mech.com.stasco.WorkFormDetailFragment.previousAreaId;
 import static stasco_mech.com.stasco.WorkFormDetailFragment.stateTrack;
 
 public class WorkArea extends ConstraintLayout {
+
+    private WorkArea workArea = this;
 
     ConstraintLayout areaLayout;
     public int costCount = 0;
@@ -50,9 +56,9 @@ public class WorkArea extends ConstraintLayout {
         initView(context);
     }
 
-    public WorkArea(Context context, ConstraintLayout areaLayout) {
+    public WorkArea(Context context, Activity activity, ConstraintLayout areaLayout) {
         super(context);
-        initView(context, areaLayout);
+        initView(context, activity, areaLayout);
     }
 
     public WorkArea(Context context, AttributeSet attrs) {
@@ -71,9 +77,12 @@ public class WorkArea extends ConstraintLayout {
         areaLayout.addView(inflater.inflate(R.layout.area_group, areaLayout, false));
     }
 
-    private void initView(Context context, final ConstraintLayout areaLayout){
+    private void initView(Context context, Activity activity, final ConstraintLayout areaLayout){
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        costStrings.add("");
+        costStrings.add("");
 
         newAreaGroup = inflater.inflate(R.layout.area_group, areaLayout, false);
 

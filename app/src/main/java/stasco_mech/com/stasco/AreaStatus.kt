@@ -35,7 +35,10 @@ class AreaStatus() {
         costTrack.get(areaTrack.indexOf(workArea)).removeAt(index)
     }
 
-    fun updateText(editText: EditText, workArea: WorkArea) {
+    fun updateText(editText: EditText, workArea: WorkArea, index: Int, s: CharSequence) {
 
+        val newString = s.toString()
+        var thisArea: ArrayList<String?> = costTrack.get(areaTrack.indexOf(workArea))
+        thisArea.set(index, newString)
     }
 }
