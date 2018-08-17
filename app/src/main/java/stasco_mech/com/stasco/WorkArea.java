@@ -2,6 +2,8 @@ package stasco_mech.com.stasco;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
