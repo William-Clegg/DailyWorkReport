@@ -39,8 +39,9 @@ public class WorkFormDetailFragment extends Fragment {
     static int areaId = 10;
     static Integer previousAreaId;
     static WorkArea[] stateTrack = new WorkArea[5];
+    boolean[] restoreWorkArray = new boolean[5];
+    boolean[][] restoreCostArray = new boolean[5][];
     static boolean stopped;
-    WorkFormViewModel workFormViewModel;
     ConstraintSet mainAreaSet = new ConstraintSet();
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -54,10 +55,14 @@ public class WorkFormDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        workFormViewModel = ViewModelProviders.of(this).get(WorkFormViewModel.class);
-
+        mState = savedInstanceState;
         previousAreaId = null;
         areaCount = 0;
+        areaId = 10;
+        if(savedInstanceState != null) {
+            restoreWorkArray = (boolean[]) savedInstanceState.getSerializable("stateArray");
+            restoreCostArray = (boolean[][]) savedInstanceState.getSerializable("costArray");
+        }
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
@@ -80,8 +85,10 @@ public class WorkFormDetailFragment extends Fragment {
         labelAreaId = rootView.findViewById(R.id.work_form_detail_header).getId();
         areaLayout = rootView.findViewById(R.id.work_form_detail_fragment_container);
 
-        if(!stopped) {
-            addNewArea();
+        for(WorkArea state: stateTrack) {
+            if(state != null) {
+                System.out.println("!!!" + state.areaText.getText().toString());
+            }
         }
 
         addArea = rootView.findViewById(R.id.newAreaButton);
@@ -120,36 +127,48 @@ public class WorkFormDetailFragment extends Fragment {
                     deleteEntries();
                 }
             });
-
         }
+        return rootView;
+    }
 
-        /*
-        if(stopped) {
-            for(int i = 0; i < 5; i++) {
+    @Override
+    public void onResume() {
 
-                if(stateTrack[i] != null) {
-                    int[] arr = stateTrack[i].getCostArray();
+        if(!restoreWorkArray[0]) {
+            addNewArea();
+        } else {
+            for(int i = 0; i < stateTrack.length; i++) {
 
+                if(restoreWorkArray[i]) {
+
+                    boolean[] costArray = restoreCostArray[i];
                     addNewArea();
-
-                    EditText areaName = (EditText) stateTrack[i].getNewAreaGroup().findViewById(arr[0]);
-                    areaName.setText(mState.getString("field" + i + 0));
-
-                    EditText areaCost = (EditText) stateTrack[i].getNewAreaGroup().findViewById(arr[1]);
-                    areaCost.setText(mState.getString("field" + i + 1));
-
-                    for (int j = 3; j < arr.length; j++) {
-                        if(arr[j] != 0) {
-
-                            stateTrack[i].addNewCost();
-                            EditText addedCost = (EditText) stateTrack[i].getNewAreaGroup().findViewById(arr[j]);
-                            addedCost.setText(mState.getString("field" + i + j));
-                        }
+                    System.out.println("i currently equals " + i);
+                    System.out.println("displaying..." + mState.getString(i + "areaKey"));
+                    stateTrack[i].areaText.setText(mState.getString(i + "areaKey"));
+                    System.out.println(stateTrack[i].areaText.getText().toString());
+                    if(i>0) {
+                        System.out.println(stateTrack[i-1].areaText.getText().toString());
+                    }
+                    stateTrack[i].initialCost.setText(mState.getString(i + "initialCostText"));
+                    if(costArray[0]) {
+                        stateTrack[i].addNewCost();
+                        stateTrack[i].firstCost.setText(mState.getString(i + "firstCostText"));
+                    }if(costArray[1]) {
+                        stateTrack[i].addNewCost();
+                        stateTrack[i].secondCost.setText(mState.getString(i + "secondCostText"));
+                    }if(costArray[2]) {
+                        stateTrack[i].addNewCost();
+                        stateTrack[i].thirdCost.setText(mState.getString(i + "thirdCostText"));
+                    }if(costArray[3]) {
+                        stateTrack[i].addNewCost();
+                        stateTrack[i].fourthCost.setText(mState.getString(i + "fourthCostText"));
                     }
                 }
             }
-        }*/
-        return rootView;
+        }
+
+        super.onResume();
     }
 
     public void editEntries() {
@@ -213,7 +232,7 @@ public class WorkFormDetailFragment extends Fragment {
 
     public void addNewArea() {
 
-        WorkArea newAreaGroup = new WorkArea(getContext(), getActivity(),areaLayout);
+        WorkArea newAreaGroup = new WorkArea(getContext(), getActivity(), areaLayout);
         newAreaGroup.setId(areaId);
         stateTrack[areaCount] = newAreaGroup;
 
@@ -221,31 +240,43 @@ public class WorkFormDetailFragment extends Fragment {
         areaId++;
     }
 
-/*
     @Override
-    public void onStop() {
+    public void onSaveInstanceState(Bundle outState) {
 
-        stopped = true;
-        for(int i = 0; i < 5; i++) {
+        boolean[] tempBooleanArray = new boolean[5];
+        boolean[][] tempCostArray = new boolean[5][];
+        for(int i = 0; i < stateTrack.length; i++) {
             if(stateTrack[i] != null) {
-                int[] arr = stateTrack[i].getCostArray();
+                tempBooleanArray[i] = true;
+                tempCostArray[i] = stateTrack[i].getCostArray();
+            }
+        }
+        outState.putSerializable("stateArray", tempBooleanArray);
+        outState.putSerializable("costArray", tempCostArray);
 
-                EditText areaName = (EditText) stateTrack[i].getNewAreaGroup().findViewById(arr[0]);
-                mState.putString("field" + i + 0, areaName.getText().toString());
-
-                EditText areaCost = (EditText) stateTrack[i].getNewAreaGroup().findViewById(arr[1]);
-                mState.putString("field" + i + 1, areaCost.getText().toString());
-
-                for(int j = 3; j < arr.length; j++) {
-                    if(arr[j] != 0) {
-
-                        EditText costNum = (EditText) stateTrack[i].getNewAreaGroup().findViewById(arr[j]);
-                        mState.putString("field" + i + j, costNum.getText().toString());
-                    }
+        for(int i = 0; i < stateTrack.length; i++) {
+            if(stateTrack[i] != null) {
+                boolean[] costArray = stateTrack[i].getCostArray();
+                System.out.println("saving...." + stateTrack[i].areaText.getText().toString());
+                outState.putString(i + "areaKey", stateTrack[i].areaText.getText().toString());
+                outState.putString(i + "initialCostText", stateTrack[i].initialCost.getText().toString());
+                if(costArray[0]) {
+                    outState.putString(i + "firstCostText", stateTrack[i].firstCost.getText().toString());
+                }if(costArray[1]) {
+                    outState.putString(i + "secondCostText", stateTrack[i].secondCost.getText().toString());
+                }if(costArray[2]) {
+                    outState.putString(i + "thirdCostText", stateTrack[i].thirdCost.getText().toString());
+                }if(costArray[3]) {
+                    outState.putString(i + "fourthCostText", stateTrack[i].fourthCost.getText().toString());
                 }
             }
         }
-        super.onStop();
-    }*/
+
+        for(WorkArea state: stateTrack) {
+            state = null;
+        }
+
+        super.onSaveInstanceState(outState);
+    }
 }
 

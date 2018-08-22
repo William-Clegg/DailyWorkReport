@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import stasco_mech.com.stasco.databinding.AreaGroupBinding;
@@ -38,6 +39,7 @@ public class WorkArea extends ConstraintLayout {
     CheckBox secondBox;
     CheckBox thirdBox;
     CheckBox fourthBox;
+    EditText areaText;
     EditText initialCost;
     EditText firstCost;
     EditText secondCost;
@@ -91,6 +93,7 @@ public class WorkArea extends ConstraintLayout {
         secondBox = newAreaGroup.findViewById(R.id.secondBox);
         thirdBox = newAreaGroup.findViewById(R.id.thirdBox);
         fourthBox = newAreaGroup.findViewById(R.id.fourthBox);
+        areaText = newAreaGroup.findViewById(R.id.areaNameInitial);
         initialCost = newAreaGroup.findViewById(R.id.costInitial);
         firstCost = newAreaGroup.findViewById(R.id.firstCost);
         secondCost = newAreaGroup.findViewById(R.id.secondCost);
